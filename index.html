@@ -10,10 +10,25 @@
     <div>
         <h1>Weather Dashboard</h1>
     </div>
-    <div>
-        
+    <div class="col-4" id="search-side">
+        <section>
+            <h2>Search for a City:</h2>
+        </section>
+        <section>
+            <form>
+                <input type="text" size="40">
+                <button class="fas fa-search"></button>
+            </form>
+        </section>
+        <section>
+            <div id="searched-cities"></div>
+        </section>
     </div>
-
+    <div class="col-8" id="display-side">
+        <div id="city-display"></div>
+        <div id="forecast-display"></div>
+    </div>
+    <script src="https://kit.fontawesome.com/94d4929d6b.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
