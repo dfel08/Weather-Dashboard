@@ -6,11 +6,15 @@ $(document).submit(function () {
     //Open Weather API Call
     var cityName = $("#search").val();
     var openWeatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=2f0ba5199de08099b1f937f7db0ea1d8";
+    var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=2f0ba5199de08099b1f937f7db0ea1d8";
     
+    $.ajax({
+        url: fiveDay,
+        method: "GET"
+    }).then(function (intialResponse) {
+        console.log(intialResponse)
+    })
     
-    //var UVAPI = "https://api.openweathermap.org/data/2.5/uvi?appid=2f0ba5199de08099b1f937f7db0ea1d8&lat=" + lat + "&lon=" + lon
-    //var lat = latitude
-    //var lon = longitude
 
     $.ajax({
         url: openWeatherAPI,
@@ -18,8 +22,24 @@ $(document).submit(function () {
     }).then(function (response) {
         // console.log the response 
         console.log(response)
-        return response;
+        $("#city-name").text(response.name);
+        $("#temp").text("Temperature: " + response.main.temp + " Kelvin");
+        $("#humidity").text("Humidity: " + response.main.humidity + "%");
+        $("#wind-speed").text("Wind Speed: " + response.wind.speed + " mph");
+        
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        var UVAPI = "https://api.openweathermap.org/data/2.5/uvi?appid=2f0ba5199de08099b1f937f7db0ea1d8&lat=" + lat + "&lon=" + lon;
+    
+        $.ajax({
+            url: UVAPI,
+            method: "GET"
+        }).then(function (res) {
+            console.log(res)
+            $("#uv-index").text("UV Index: " + res.value);
+        })
     });
+
 
 });
 
@@ -35,6 +55,7 @@ $('.fa-search').on('click', function(){
             var button = $("<button>").text(searchedCities[i]);
             var li = $("<li>").append(button);
             $("#searched-cities").append(li);
+            console.log(searchedCities)
         }
 
     });
@@ -54,4 +75,5 @@ function renderSearch() {
 renderSearch();
 
 
-console.log(cities)
+
+
