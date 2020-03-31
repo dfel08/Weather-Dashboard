@@ -27,13 +27,31 @@ $('.fa-search').on('click', function(){
 
     $('input[type="text"]').each(function(){    
         var value = $(this).val();
+        
         searchedCities.push(value);
+        $("#searched-cities").empty();
         for (var i = 0; i < searchedCities.length; i++) {
             localStorage.setItem(i, searchedCities[i]);
+            var button = $("<button>").text(searchedCities[i]);
+            var li = $("<li>").append(button);
+            $("#searched-cities").append(li);
         }
-       
+
     });
+    
 });
 
-var cities = Object.values(localStorage);
+function renderSearch() {
+    var cities = Object.values(localStorage);
+    $("#searched-cities").empty();
+        for (var i = 0; i < cities.length; i++) {
+            var button = $("<button>").text(cities[i]);
+            var li = $("<li>").append(button);
+            $("#searched-cities").append(li);
+        }
+}
+
+renderSearch();
+
+
 console.log(cities)
