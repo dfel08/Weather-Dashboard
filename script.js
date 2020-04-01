@@ -11,8 +11,28 @@ $(document).submit(function () {
     $.ajax({
         url: fiveDay,
         method: "GET"
-    }).then(function (intialResponse) {
-        console.log(intialResponse)
+    }).then(function (initialResponse) {
+        console.log(initialResponse);
+        $("#dayOneDate").append(initialResponse.list[0].dt_txt);
+        $("#dayOneTemp").append("Temperature: " + initialResponse.list[0].main.temp + " Kelvin");
+        $("#dayOneClouds").append("Weather: " + initialResponse.list[0].weather[0].description);
+        $("#dayOneHumidity").append("Humidity: " + initialResponse.list[0].main.humidity + "%");
+        $("#dayTwoDate").append(initialResponse.list[8].dt_txt);
+        $("#dayTwoTemp").append("Temperature: " + initialResponse.list[8].main.temp + " Kelvin");
+        $("#dayTwoClouds").append("Weather: " + initialResponse.list[8].weather[0].description);
+        $("#dayTwoHumidity").append("Humidity: " + initialResponse.list[8].main.humidity + "%");
+        $("#dayThreeDate").append(initialResponse.list[16].dt_txt);
+        $("#dayThreeTemp").append("Temperature: " + initialResponse.list[16].main.temp + " Kelvin");
+        $("#dayThreeClouds").append("Weather: " + initialResponse.list[16].weather[0].description);
+        $("#dayThreeHumidity").append("Humidity: " + initialResponse.list[16].main.humidity + "%");
+        $("#dayFourDate").append(initialResponse.list[24].dt_txt);
+        $("#dayFourTemp").append("Temperature: " + initialResponse.list[24].main.temp + " Kelvin");
+        $("#dayFourClouds").append("Weather: " + initialResponse.list[24].weather[0].description);
+        $("#dayFourHumidity").append("Humidity: " + initialResponse.list[24].main.humidity + "%");
+        $("#dayFiveDate").append(initialResponse.list[32].dt_txt);
+        $("#dayFiveTemp").append("Temperature: " + initialResponse.list[32].main.temp + " Kelvin");
+        $("#dayFiveClouds").append("Weather: " + initialResponse.list[32].weather[0].description);
+        $("#dayFiveHumidity").append("Humidity: " + initialResponse.list[32].main.humidity + "%");
     })
     
 
@@ -37,6 +57,13 @@ $(document).submit(function () {
         }).then(function (res) {
             console.log(res)
             $("#uv-index").text("UV Index: " + res.value);
+            if (res.value = 0 && res.value < 2) {
+                $("#uv-index").css("background-color", "green");
+            } else if (res.value > 2 && res.value < 5) {
+                $("#uv-index").css("background-color", "yellow");
+            } else (res.value > 5); {
+                $("#uv-index").css("background-color", "red");
+            };
         })
     });
 
