@@ -13,23 +13,33 @@ $(document).submit(function () {
         method: "GET"
     }).then(function (initialResponse) {
         console.log(initialResponse);
-        $("#dayOneDate").append(initialResponse.list[0].dt_txt);
+        var dayOneDate = initialResponse.list[0].dt_txt
+        var dayOne = dayOneDate.substring(0, dayOneDate.length - 8)
+        var dayTwoDate = initialResponse.list[8].dt_txt
+        var dayTwo = dayTwoDate.substring(0, dayTwoDate.length - 8)
+        var dayThreeDate = initialResponse.list[16].dt_txt
+        var dayThree = dayThreeDate.substring(0, dayThreeDate.length - 8)
+        var dayFourDate = initialResponse.list[24].dt_txt
+        var dayFour = dayFourDate.substring(0, dayFourDate.length - 8)
+        var dayFiveDate = initialResponse.list[32].dt_txt
+        var dayFive = dayFiveDate.substring(0, dayFiveDate.length - 8)
+        $("#dayOneDate").append(dayOne);
         $("#dayOneTemp").append("Temperature: " + initialResponse.list[0].main.temp + " Kelvin");
         $("#dayOneClouds").append("Weather: " + initialResponse.list[0].weather[0].description);
         $("#dayOneHumidity").append("Humidity: " + initialResponse.list[0].main.humidity + "%");
-        $("#dayTwoDate").append(initialResponse.list[8].dt_txt);
+        $("#dayTwoDate").append(dayTwo);
         $("#dayTwoTemp").append("Temperature: " + initialResponse.list[8].main.temp + " Kelvin");
         $("#dayTwoClouds").append("Weather: " + initialResponse.list[8].weather[0].description);
         $("#dayTwoHumidity").append("Humidity: " + initialResponse.list[8].main.humidity + "%");
-        $("#dayThreeDate").append(initialResponse.list[16].dt_txt);
+        $("#dayThreeDate").append(dayThree);
         $("#dayThreeTemp").append("Temperature: " + initialResponse.list[16].main.temp + " Kelvin");
         $("#dayThreeClouds").append("Weather: " + initialResponse.list[16].weather[0].description);
         $("#dayThreeHumidity").append("Humidity: " + initialResponse.list[16].main.humidity + "%");
-        $("#dayFourDate").append(initialResponse.list[24].dt_txt);
+        $("#dayFourDate").append(dayFour);
         $("#dayFourTemp").append("Temperature: " + initialResponse.list[24].main.temp + " Kelvin");
         $("#dayFourClouds").append("Weather: " + initialResponse.list[24].weather[0].description);
         $("#dayFourHumidity").append("Humidity: " + initialResponse.list[24].main.humidity + "%");
-        $("#dayFiveDate").append(initialResponse.list[32].dt_txt);
+        $("#dayFiveDate").append(dayFive);
         $("#dayFiveTemp").append("Temperature: " + initialResponse.list[32].main.temp + " Kelvin");
         $("#dayFiveClouds").append("Weather: " + initialResponse.list[32].weather[0].description);
         $("#dayFiveHumidity").append("Humidity: " + initialResponse.list[32].main.humidity + "%");
@@ -42,6 +52,8 @@ $(document).submit(function () {
     }).then(function (response) {
         // console.log the response 
         console.log(response)
+        var icon = "http://openweathermap.org/img/wn/" + response.weather[0].icon;
+
         $("#city-name").text(response.name);
         $("#temp").text("Temperature: " + response.main.temp + " Kelvin");
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
