@@ -13,6 +13,7 @@ $(document).submit(function () {
         method: "GET"
     }).then(function (initialResponse) {
         console.log(initialResponse);
+        //$("#forecast-display").empty();
         var dayOneDate = initialResponse.list[0].dt_txt
         var dayOne = dayOneDate.substring(0, dayOneDate.length - 8)
         var dayTwoDate = initialResponse.list[8].dt_txt

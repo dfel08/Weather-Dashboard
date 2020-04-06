@@ -1,6 +1,6 @@
 # Weather-Dashboard
 
-Sixth assignment for UC-Berkeley Extension Coding Bootcamp. This is an assignment to create a weather app that shows various data points from different APIs, and also saves the data entered when the page is refreshed.
+Sixth project while attending UC-Berkeley Extension Coding Bootcamp. This is a weather app that shows various data points from different APIs, and also saves the data entered when the page is refreshed.
 
 ## Getting Started
 
