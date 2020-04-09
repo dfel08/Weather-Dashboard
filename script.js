@@ -1,4 +1,5 @@
 var searchedCities = [];
+var cities = Object.values(localStorage);
 
 
 $(document).submit(function () {
@@ -24,26 +25,26 @@ $(document).submit(function () {
         var dayFour = dayFourDate.substring(0, dayFourDate.length - 8)
         var dayFiveDate = initialResponse.list[32].dt_txt
         var dayFive = dayFiveDate.substring(0, dayFiveDate.length - 8)
-        $("#dayOneDate").append(dayOne);
-        $("#dayOneTemp").append("Temperature: " + initialResponse.list[0].main.temp + " Kelvin");
-        $("#dayOneClouds").append("Weather: " + initialResponse.list[0].weather[0].description);
-        $("#dayOneHumidity").append("Humidity: " + initialResponse.list[0].main.humidity + "%");
-        $("#dayTwoDate").append(dayTwo);
-        $("#dayTwoTemp").append("Temperature: " + initialResponse.list[8].main.temp + " Kelvin");
-        $("#dayTwoClouds").append("Weather: " + initialResponse.list[8].weather[0].description);
-        $("#dayTwoHumidity").append("Humidity: " + initialResponse.list[8].main.humidity + "%");
-        $("#dayThreeDate").append(dayThree);
-        $("#dayThreeTemp").append("Temperature: " + initialResponse.list[16].main.temp + " Kelvin");
-        $("#dayThreeClouds").append("Weather: " + initialResponse.list[16].weather[0].description);
-        $("#dayThreeHumidity").append("Humidity: " + initialResponse.list[16].main.humidity + "%");
-        $("#dayFourDate").append(dayFour);
-        $("#dayFourTemp").append("Temperature: " + initialResponse.list[24].main.temp + " Kelvin");
-        $("#dayFourClouds").append("Weather: " + initialResponse.list[24].weather[0].description);
-        $("#dayFourHumidity").append("Humidity: " + initialResponse.list[24].main.humidity + "%");
-        $("#dayFiveDate").append(dayFive);
-        $("#dayFiveTemp").append("Temperature: " + initialResponse.list[32].main.temp + " Kelvin");
-        $("#dayFiveClouds").append("Weather: " + initialResponse.list[32].weather[0].description);
-        $("#dayFiveHumidity").append("Humidity: " + initialResponse.list[32].main.humidity + "%");
+        $("#dayOneDate").text(dayOne);
+        $("#dayOneTemp").text("Temperature: " + initialResponse.list[0].main.temp + " Kelvin");
+        $("#dayOneClouds").text("Weather: " + initialResponse.list[0].weather[0].description);
+        $("#dayOneHumidity").text("Humidity: " + initialResponse.list[0].main.humidity + "%");
+        $("#dayTwoDate").text(dayTwo);
+        $("#dayTwoTemp").text("Temperature: " + initialResponse.list[8].main.temp + " Kelvin");
+        $("#dayTwoClouds").text("Weather: " + initialResponse.list[8].weather[0].description);
+        $("#dayTwoHumidity").text("Humidity: " + initialResponse.list[8].main.humidity + "%");
+        $("#dayThreeDate").text(dayThree);
+        $("#dayThreeTemp").text("Temperature: " + initialResponse.list[16].main.temp + " Kelvin");
+        $("#dayThreeClouds").text("Weather: " + initialResponse.list[16].weather[0].description);
+        $("#dayThreeHumidity").text("Humidity: " + initialResponse.list[16].main.humidity + "%");
+        $("#dayFourDate").text(dayFour);
+        $("#dayFourTemp").text("Temperature: " + initialResponse.list[24].main.temp + " Kelvin");
+        $("#dayFourClouds").text("Weather: " + initialResponse.list[24].weather[0].description);
+        $("#dayFourHumidity").text("Humidity: " + initialResponse.list[24].main.humidity + "%");
+        $("#dayFiveDate").text(dayFive);
+        $("#dayFiveTemp").text("Temperature: " + initialResponse.list[32].main.temp + " Kelvin");
+        $("#dayFiveClouds").text("Weather: " + initialResponse.list[32].weather[0].description);
+        $("#dayFiveHumidity").text("Humidity: " + initialResponse.list[32].main.humidity + "%");
     })
     
 
@@ -89,6 +90,7 @@ $('.fa-search').on('click', function(){
         var value = $(this).val();
         
         searchedCities.push(value);
+        
         $("#searched-cities").empty();
         for (var i = 0; i < searchedCities.length; i++) {
             localStorage.setItem(i, searchedCities[i]);
@@ -97,20 +99,21 @@ $('.fa-search').on('click', function(){
             $("#searched-cities").append(li);
             console.log(searchedCities)
         }
-
-    });
-    
+    });   
 });
 
 function renderSearch() {
-    var cities = Object.values(localStorage);
     $("#searched-cities").empty();
         for (var i = 0; i < cities.length; i++) {
-            var button = $("<button>").text(cities[i]);
+            var button = $("<button class='cities'>").text(cities[i]);
             var li = $("<li>").append(button);
             $("#searched-cities").append(li);
         }
 }
+
+$(document).on('click', ".cities", function() {
+    console.log("I was clicked")
+})
 
 renderSearch();
 
